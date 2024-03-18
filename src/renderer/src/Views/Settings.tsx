@@ -204,10 +204,10 @@ export default function Settings(props: ISettingsProps) {
         </Paper>
       </div>
       <div className="app-row" style={{ justifyContent: "center" }}>
-        <Button variant="contained" color="success" onClick={onSave}>
+        <Button variant="contained" color="primary" onClick={onSave}>
           <Save /> &nbsp; Save
         </Button>
-        <Button variant="contained" color="error" onClick={onCancel}>
+        <Button variant="contained" color="secondary" onClick={onCancel}>
           <Clear /> &nbsp; Cancel
         </Button>
       </div>

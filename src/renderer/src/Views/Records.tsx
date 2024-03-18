@@ -206,7 +206,7 @@ export default function Records(props: IRecordsProps) {
             gap: ".5rem",
           }}
         >
-          <Button variant="contained" color="secondary" onClick={onGoBack}>
+          <Button variant="contained" color="primary" onClick={onGoBack}>
             <ArrowBack /> &nbsp; Back
           </Button>
           <Typography variant="body2" align="left" sx={{ flex: 1 }}>

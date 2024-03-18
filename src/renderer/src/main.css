@@ -8,10 +8,19 @@
   --main-color: #4e54c8;
   --secondary-color: #854ec8;
   --accent-color: #4e91c8;
+  --main-color: #fc7caf;
+  --secondary-color: #fcb580;
+  --primary-color: #f5667a;
+  --primary-color-hover: #f23650;
 }
 body {
   min-height: 100vh;
-  background: linear-gradient(180deg, #4e54c8 25%, #8f94fb 100%);
+  /* background: linear-gradient(180deg, var(--main-color)#4e54c8 25%, #8f94fb 100%); */
+  background: linear-gradient(
+    135deg,
+    var(--main-color) 35%,
+    var(--secondary-color) 100%
+  );
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
@@ -45,4 +54,38 @@ body {
 .stopContainer:hover {
   backdrop-filter: blur(8px);
   opacity: 1;
+}
+.MuiButton-colorPrimary {
+  background-color: var(--primary-color) !important;
+}
+.MuiButton-colorPrimary:hover {
+  background-color: var(--primary-color-hover) !important;
+}
+.banner-container {
+  height: min(50px, 40%);
+  position: fixed;
+  z-index: -1;
+  display: flex;
+  flex-wrap: nowrap;
+  top: 0;
+  left: 0;
+  gap: 0;
+  animation: slides 13s linear infinite;
+}
+.banner-container .banner {
+  min-width: 100vw;
+  height: auto;
+  transform: rotate(180deg);
+  opacity: 0.35;
+}
+.banner-container .banner.flipped {
+  transform: rotate(180deg) rotateY(180deg);
+}
+@keyframes slides {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-66.66666%);
+  }
 }

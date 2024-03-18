@@ -5,6 +5,7 @@ import Default from "./Views/Default";
 import Settings from "./Views/Settings";
 import getData from "./utils/getData";
 import Records from "./Views/Records";
+import Banner from "./assets/banner2.png";
 function App() {
   const [view, setView] = useState<"STOPPED" | "COUNT" | "SETTINGS" | "VIEW">(
     localStorage.getItem("IS_RUNNING") == "1" ? "COUNT" : "STOPPED"
@@ -126,4 +127,16 @@ function App() {
   return <></>;
 }
 
-export default App;
+function MainApp() {
+  return (
+    <>
+      <div className="banner-container">
+        <img src={Banner} alt="banner" className="banner" />
+        <img src={Banner} alt="banner" className="banner flipped" />
+        <img src={Banner} alt="banner" className="banner" />
+      </div>
+      <App />
+    </>
+  );
+}
+export default MainApp;

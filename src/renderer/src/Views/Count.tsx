@@ -90,14 +90,15 @@ export default function Count(props: ICountProps) {
             }}
           >
             <CircularProgress
-              sx={{ color: "#F7E6C4" }}
+              sx={{ color: "#6e4ee4" }}
+              // color="primary"
               size={60}
               thickness={3}
             />
           </div>
         ) : isConfirm ? (
           <>
-            <Button variant="contained" color="success" onClick={onAddRecord}>
+            <Button variant="contained" color="primary" onClick={onAddRecord}>
               <NoteAdd />
               &nbsp; Store Record
             </Button>
@@ -115,7 +116,7 @@ export default function Count(props: ICountProps) {
             </Button>
           </>
         ) : (
-          <Button variant="contained" color="secondary" onClick={onTimerPaused}>
+          <Button variant="contained" color="primary" onClick={onTimerPaused}>
             <Pause sx={{ color: "#fff" }} />
             &nbsp;Stop Timer
           </Button>
