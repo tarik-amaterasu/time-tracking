@@ -1,0 +1,15 @@
+.records-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  min-width: 80%;
+  height: 100%;
+  padding-top: 1rem;
+  justify-content: flex-start;
+}
+.app-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.8rem;
+}
