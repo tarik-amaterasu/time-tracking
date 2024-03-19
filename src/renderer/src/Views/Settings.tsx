@@ -68,6 +68,7 @@ export default function Settings(props: ISettingsProps) {
     localStorage.setItem("sheetID", sheetID);
     localStorage.setItem("pageName", JSON.stringify(selectedPage));
     localStorage.setItem("cachedPages", JSON.stringify(pages));
+    (onCancel as any)();
   }
   const { onCancel } = props;
   return (
@@ -91,7 +92,7 @@ export default function Settings(props: ISettingsProps) {
             gap: 2,
             position: "relative",
           }}
-          elevation={1}
+          elevation={5}
         >
           <InputBase
             id="creeds"
@@ -142,7 +143,7 @@ export default function Settings(props: ISettingsProps) {
             width: "100%",
             gap: 2,
           }}
-          elevation={1}
+          elevation={5}
         >
           <InputBase
             id="SheetName"
@@ -172,7 +173,7 @@ export default function Settings(props: ISettingsProps) {
             width: "100%",
             gap: 2,
           }}
-          elevation={1}
+          elevation={5}
         >
           <FormControl fullWidth>
             <InputLabel id="pageNameLabel">Page Name</InputLabel>

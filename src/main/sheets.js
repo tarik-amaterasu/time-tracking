@@ -19,6 +19,27 @@ export async function insertRecord(payload, config) {
   const document = createDocument(credentials, sheetID);
   await document.loadInfo();
   const sheetPage = document.sheetsById[+pageName];
+  try {
+    if (sheetPage.headerValues.length >= 0) {
+      console.log("Headers Are set");
+    }
+  } catch (e) {
+    sheetPage.setHeaderRow(
+      [
+        "Date",
+        "Duration on App",
+        "Starting Time",
+        "Ending Time",
+        "Duration Computed",
+        "Duration in Seconds",
+      ],
+      0
+    );
+  }
+
+  //   console.log(sheetPage);
+  //   P = await sheetPage.loadHeaderRow();
+
   const rowsCount = (await sheetPage.getRows()).length + 2;
   await sheetPage.addRow(
     [

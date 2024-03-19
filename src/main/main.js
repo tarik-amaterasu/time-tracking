@@ -1,8 +1,16 @@
-import { app, BrowserWindow, dialog, ipcMain, screen } from "electron";
+import {
+  app,
+  BrowserWindow,
+  dialog,
+  ipcMain,
+  nativeImage,
+  screen,
+} from "electron";
 import express from "express";
 import * as path from "path";
 import extractBasics from "./middlewares";
 import router from "./routes";
+import Logo from "../app-assets/logo-rounded.png";
 
 /**
  * mainWindow {BrowserWindow}
@@ -30,13 +38,13 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: w,
     height: h,
-    title: "Elia Time Tracker",
+    title: "Shiftify - Time Tracker",
     x: width - w,
     y: height - h + 25,
     transparent: false,
     roundedCorners: true,
     resizable: true,
-    icon: path.join(__dirname, "../renderer/src/assets/logo192.png"),
+    icon: path.join(__dirname, "../../app-assets/logo-main.png"),
     webPreferences: {
       preload: path.join(__dirname, "../preload/preload.js"),
       webSecurity: false,
@@ -67,6 +75,10 @@ function resizeWindow(expand = false) {
 }
 
 app.whenReady().then(() => {
+  const iconPath = path.join(__dirname, "./app-assets/logo-main-bg.png");
+  // console.log(iconPath, Logo);
+  const dockIcon = nativeImage.createFromDataURL(Logo);
+  app.dock.setIcon(dockIcon);
   ipcMain.handle("dialog:openFile", handleFileOpen);
   createWindow();
 });
