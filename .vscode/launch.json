@@ -9,6 +9,12 @@
       "name": "Npm start",
       "request": "launch",
       "type": "node-terminal"
+    },
+    {
+      "command": "npm run dev",
+      "name": "Npm open electron",
+      "request": "launch",
+      "type": "node-terminal"
     }
   ]
 }

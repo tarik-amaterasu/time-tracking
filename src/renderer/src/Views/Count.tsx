@@ -56,7 +56,7 @@ export default function Count(props: ICountProps) {
     })
       .then(() => {
         setIsSending(false);
-        stopTimer();
+        // stopTimer();
       })
       .catch((err) => {
         setIsSending(false);

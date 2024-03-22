@@ -19310,7 +19310,6 @@ function Count(props) {
       }
     }).then(() => {
       setIsSending(false);
-      stopTimer();
     }).catch((err) => {
       setIsSending(false);
       alert(err.message);

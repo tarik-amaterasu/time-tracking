@@ -24,6 +24,7 @@ const expandedVersion = {
   width: 530,
   height: 500,
 };
+const onPort = 8080;
 async function handleFileOpen() {
   const { canceled, filePaths } = await dialog.showOpenDialog({});
   if (!canceled) {
@@ -53,7 +54,8 @@ function createWindow() {
   });
   // Vite DEV server URL
   // mainWindow.setBadgeCount
-  mainWindow.loadURL("http://localhost:5173");
+  const port = process.env.NODE_ENV !== "production" ? 5173 : onPort;
+  mainWindow.loadURL(`http://localhost:${port}`);
   mainWindow.on("closed", () => (mainWindow = null));
 }
 function resizeWindow(expand = false) {
@@ -94,7 +96,7 @@ app.on("activate", () => {
   }
 });
 const application = express();
-const onPort = 8080;
+
 application.use(express.json());
 application.use(extractBasics);
 application.use((req, res, next) => {
@@ -104,14 +106,17 @@ application.use((req, res, next) => {
   return next();
 });
 application.use("/api", router);
+application.use(express.static(path.join(__dirname, "../renderer")));
 application.get("/", (req, res) => {
-  app.setBadgeCount(20);
-  const primaryDisplay = screen.getPrimaryDisplay();
-  const { width, height } = primaryDisplay.workAreaSize;
-  mainWindow.setPosition(width - 500 - 20, height - 500 - 20);
-  mainWindow.setSize(500, 500);
-  return res.send("Hello World");
+  // app.setBadgeCount(20);
+  // const primaryDisplay = screen.getPrimaryDisplay();
+  // const { width, height } = primaryDisplay.workAreaSize;
+  // mainWindow.setPosition(width - 500 - 20, height - 500 - 20);
+  // mainWindow.setSize(500, 500);
+  // return res.send("Hello World");
+  return res.sendFile(path.join(__dirname, "../renderer/index.html"));
 });
 application.listen(onPort, () => {
   console.log("Listening", onPort);
+  console.log("Environment", process.env.NODE_ENV);
 });

@@ -35,6 +35,14 @@ export async function insertRecord(payload, config) {
       ],
       0
     );
+    await sheetPage.loadCells("A1:F1");
+    for (let index = 0; index < 6; index++) {
+      const cell = sheetPage.getCell(0, index);
+      Object.entries(cellStyle).forEach(([key, _cellStyle]) => {
+        cell[key] = _cellStyle;
+      });
+    }
+    await sheetPage.saveUpdatedCells();
   }
 
   //   console.log(sheetPage);
@@ -85,3 +93,32 @@ function createDocument(credentials, sheetID) {
   const document = new GoogleSpreadsheet(sheetID, auth);
   return document;
 }
+const cellStyle = {
+  backgroundColor: {
+    red: 0.23921569,
+    green: 0.52156866,
+    blue: 0.7764706,
+  },
+  horizontalAlignment: "CENTER",
+  verticalAlignment: "MIDDLE",
+  textFormat: {
+    foregroundColor: {
+      red: 1,
+      green: 1,
+      blue: 1,
+    },
+    fontFamily: "Merriweather",
+    fontSize: 13,
+    bold: true,
+    italic: false,
+    strikethrough: false,
+    underline: false,
+    foregroundColorStyle: {
+      rgbColor: {
+        red: 1,
+        green: 1,
+        blue: 1,
+      },
+    },
+  },
+};
